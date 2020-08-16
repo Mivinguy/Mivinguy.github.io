@@ -1,14 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import './App.css';
 
+
 function App() {
+  const [alg, setAlg] = React.useState('DFS');
+
+  const handleAlg = (event, newAlg) => {
+    setAlg(newAlg);
+  };
+
   return (
     <div className="App">
-      <button id='startButton'>Start</button>
+      <ToggleButtonGroup
+      value={alg}
+      exclusive
+      onChange={handleAlg}
+      aria-label="Algorithms"
+      >
+      <ToggleButton value="DFS" aria-label="DFS search">DFS</ToggleButton>
+      <ToggleButton value="BFS" aria-label="BFS search">BFS</ToggleButton>
+      <ToggleButton value="A*" aria-label="A* search">A*</ToggleButton>
+      <ToggleButton value="Dijkstra’s" aria-label="Dijkstra’s search">Dijkstra’s</ToggleButton>
+      </ToggleButtonGroup>
+      
+      <button onClick={() => {startButton()}}>Start</button>
     </div>
   );
 }
+
 
 // Make start button run algorithm functions
 
@@ -42,15 +63,15 @@ function setDefaultStartFinish() {
   finishNode.style.backgroundColor = "red";
 }
 
-/*
+
 function startButton() {
   createGrid();
   setDefaultStartFinish();
 }
-*/
 
 
-createGrid();
-setDefaultStartFinish();
+
+//createGrid();
+//setDefaultStartFinish();
 
 export default App;
